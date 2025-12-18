@@ -12,7 +12,7 @@
         height: 100%;
         width: 100%;
         overflow: hidden;
-        background: url('bg.jpg') no-repeat center/cover fixed; /* Tema biru: gunakan bg.jpg seperti halaman sebelumnya */
+        background: url('bg.jpg') no-repeat center/cover fixed;
     }
     body {
         display: flex;
@@ -32,36 +32,41 @@
     .card {
         background: rgba(255, 255, 255, 0.15);
         backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 25px;
         padding: 30px;
         text-align: center;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        transition: transform 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s ease;
         animation: fadeIn 1s ease-out;
+        cursor: pointer; /* Menunjukkan bisa diklik */
     }
     .card:hover {
         transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     }
     .card img {
         width: 100px;
         height: 100px;
         margin-bottom: 15px;
+        filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
     }
     .card h2 {
         font-size: 1.5em;
         margin-bottom: 10px;
-        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        color: #ffffff;
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8); /* Shadow lebih tebal agar terbaca */
     }
     .card p {
         font-size: 1em;
-        opacity: 0.9;
+        opacity: 1;
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
     }
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
     }
-    /* Falling Hearts - warna biru tema */
     .love {
         position: absolute;
         font-size: 24px;
@@ -75,8 +80,6 @@
             opacity: 0;
         }
     }
-
-    /* Responsif mobile - sama seperti kode sebelumnya */
     @media (max-width: 480px) {
         .menu-container {
             grid-gap: 20px;
@@ -119,29 +122,29 @@
 </head>
 <body>
     <div class="menu-container">
-        <div class="card">
-            <img src="https://i.pinimg.com/originals/3e/9f/0f/3e9f0f0e0b0b0b0b0b0b0b0b0b0b0b0b.png" alt="Heart Icon">
+        <div class="card" onclick="window.location.href='love.html'">
+            <img src="https://img.icons8.com/fluency/96/hearts.png" alt="Love Icon">
             <h2>Love Notes 💕</h2>
             <p>Pesan manis buat kamu yang bikin hati meleleh!</p>
         </div>
-        <div class="card">
-            <img src="https://i.pinimg.com/originals/2a/5b/3c/2a5b3c2a5b3c2a5b3c2a5b3c.png" alt="Music Icon">
+        <div class="card" onclick="window.location.href='music.html'">
+            <img src="https://img.icons8.com/fluency/96/musical-notes.png" alt="Music Icon">
             <h2>Music Vibes 🎶</h2>
             <p>Lagu-lagu romantis yang bikin mood naik terus!</p>
         </div>
-        <div class="card">
-            <img src="https://i.pinimg.com/originals/4d/6e/7f/4d6e7f4d6e7f4d6e7f4d6e7f.png" alt="Gift Icon">
+        <div class="card" onclick="window.location.href='gift.html'">
+            <img src="https://img.icons8.com/fluency/96/gift.png" alt="Gift Icon">
             <h2>Gift Ideas 🎁</h2>
             <p>Ide kado lucu yang pasti bikin senyum lebar!</p>
         </div>
-        <div class="card">
-            <img src="https://i.pinimg.com/originals/5f/7a/8b/5f7a8b5f7a8b5f7a8b5f7a8b.png" alt="Star Icon">
+        <div class="card" onclick="window.location.href='moments.html'">
+            <img src="https://img.icons8.com/fluency/96/star.png" alt="Star Icon">
             <h2>Star Moments ⭐</h2>
             <p>Momen spesial kita yang bikin bintang-bintang iri!</p>
         </div>
     </div>
+
     <script>
-        // Falling hearts - emoji biru tema
         setInterval(createLove, 400);
         function createLove() {
             const love = document.createElement("div");
