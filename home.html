@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>mei cantikkkk</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Mei Cantikkkk 💖</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
     html, body {
@@ -11,8 +11,8 @@
         padding: 0;
         height: 100%;
         width: 100%;
-        overflow: hidden; /* Hilangkan scroll sepenuhnya */
-        background: url('bg.jpg') no-repeat center/cover;
+        overflow: hidden; /* Pastikan tidak ada scroll */
+        background: url('bg.jpg') no-repeat center/cover fixed;
     }
     body {
         display: flex;
@@ -42,14 +42,14 @@
         font-size: 2.6em;
         font-weight: 700;
         margin: 15px 0;
-        color: #ffffff; /* Putih agar terbaca jelas */
-        text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7); /* Shadow lebih tebal */
+        color: #ffffff;
+        text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7);
     }
     p {
         font-size: 1.3em;
         margin-bottom: 40px;
         font-weight: 500;
-        color: #ffffff; /* Putih */
+        color: #ffffff;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
     }
     .btn-wrapper {
@@ -57,13 +57,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 30px; /* Jarak lebih besar antar tombol */
+        padding: 0 40px; /* Jarak lebih lebar antar tombol */
         height: 90px;
-        max-width: 400px;
+        max-width: 420px;
         margin: 0 auto;
     }
     button {
-        padding: 12px 32px; /* Tombol lebih kecil */
+        padding: 12px 32px;
         border: none;
         border-radius: 50px;
         font-size: 1em;
@@ -71,7 +71,8 @@
         cursor: pointer;
         transition: all 0.3s ease;
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-        min-width: 140px; /* Lebih kecil */
+        width: 160px; /* Ukuran FIXED sama persis untuk kedua tombol */
+        box-sizing: border-box;
         color: white;
     }
     button:hover {
@@ -80,9 +81,15 @@
     }
     #btnGeser {
         background: linear-gradient(135deg, hwb(194 72% 10%), hsl(192, 54%, 73%));
+        position: absolute;
+        left: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
     }
     #btnFix {
         background: linear-gradient(135deg, hwb(194 72% 10%), hsl(192, 54%, 73%));
+        margin-left: auto;
     }
     .love {
         position: absolute;
@@ -131,7 +138,6 @@
         img {
             width: 130px;
             height: 130px;
-            border-width: 4px;
         }
         h1 {
             font-size: 2.1em;
@@ -141,14 +147,17 @@
             margin-bottom: 35px;
         }
         .btn-wrapper {
-            padding: 0 20px;
+            padding: 0 30px;
             height: 80px;
-            max-width: 320px;
+            max-width: 340px;
         }
         button {
-            padding: 11px 28px;
+            padding: 11px 20px;
             font-size: 0.95em;
-            min-width: 125px;
+            width: 140px; /* Tetap sama ukurannya di mobile */
+        }
+        #btnGeser {
+            left: 30px;
         }
     }
 
@@ -160,12 +169,15 @@
             font-size: 1.1em;
         }
         button {
-            padding: 10px 24px;
+            width: 130px;
+            padding: 10px 18px;
             font-size: 0.9em;
-            min-width: 120px;
         }
         .btn-wrapper {
-            padding: 0 15px;
+            padding: 0 20px;
+        }
+        #btnGeser {
+            left: 20px;
         }
     }
 </style>
@@ -214,10 +226,10 @@
     const wrapper = document.querySelector(".btn-wrapper");
 
     function moveButton() {
-        const maxX = wrapper.offsetWidth - btnGeser.offsetWidth - 40;
+        const maxX = wrapper.offsetWidth - btnGeser.offsetWidth - 60;
         const maxY = wrapper.offsetHeight - btnGeser.offsetHeight;
 
-        const randomX = 20 + Math.random() * maxX;
+        const randomX = 30 + Math.random() * maxX;
         const randomY = Math.random() * maxY;
 
         btnGeser.style.left = randomX + "px";
