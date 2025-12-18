@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Gallery - mei cantikkkk</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: url('bg.jpg') no-repeat center/cover fixed;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 40px;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: 800;
+    margin: 0 0 60px 0;
+    color: #ffffff;
+    text-shadow: 
+        0 1px 2px rgba(0,0,0,0.9),
+        0 2px 4px rgba(0,0,0,0.8),
+        0 0 15px rgba(100, 150, 255, 0.6);
+    letter-spacing: 2px;
+}
+
+.gallery-container {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    max-width: 1000px;
+}
+
+.gallery-item {
+    position: absolute;
+    width: 360px; /* Diperbesar dari 280px */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    cursor: pointer;
+    transition: 0.4s ease;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.gallery-item:hover {
+    transform: scale(1.1) !important;
+    z-index: 10;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* LIGHTBOX */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    animation: zoomIn 0.4s ease;
+}
+
+.close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    text-shadow: 0 0 10px black;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* LOVE EFFECT */
+.love {
+    position: absolute;
+    pointer-events: none;
+    animation: fall linear forwards;
+    z-index: 1;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.4em;
+        margin-bottom: 40px;
+    }
+    .gallery-item {
+        width: 280px; /* Besar di HP tapi tetap muat */
+    }
+    .close {
+        top: 20px;
+        right: 20px;
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 360px) {
+    h1 {
+        font-size: 2.1em;
+    }
+    .gallery-item {
+        width: 240px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>GALERI</h1>
+
+<div class="gallery-container">
+    <!-- Posisi acak dengan jarak horizontal lebih lebar -->
+    <div class="gallery-item" style="top: 5%; left: 8%; transform: rotate(-10deg);" onclick="openLightbox('foto1.png')">
+        <img src="foto1.png" alt="Foto 1">
+    </div>
+    <div class="gallery-item" style="top: 25%; left: 55%; transform: rotate(15deg);" onclick="openLightbox('foto2.png')">
+        <img src="foto2.png" alt="Foto 2">
+    </div>
+    <div class="gallery-item" style="top: 50%; left: 20%; transform: rotate(-6deg);" onclick="openLightbox('foto3.png')">
+        <img src="foto3.png" alt="Foto 3">
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Enlarged photo">
+</div>
+
+<script>
+// Lightbox
+function openLightbox(src) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    lightbox.classList.add('active');
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.remove('active');
+}
+
+document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeLightbox();
+    }
+});
+
+// Falling love effect
+setInterval(() => {
+    const love = document.createElement("div");
+    love.className = "love";
+    love.innerHTML = ["💙","🤍","✨","❄️"][Math.floor(Math.random()*4)];
+    love.style.left = Math.random()*100 + "vw";
+    love.style.fontSize = Math.random()*20 + 20 + "px";
+    love.style.animationDuration = Math.random()*4 + 4 + "s";
+    document.body.appendChild(love);
+    setTimeout(()=>love.remove(),10000);
+}, 400);
+</script>
+
+</body>
+</html>
