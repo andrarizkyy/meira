@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Mei Cantikkkk 💖</title>
+<title>mei cantikkkk</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
     html, body {
@@ -74,6 +74,9 @@
         width: 160px; /* Ukuran FIXED sama persis untuk kedua tombol */
         box-sizing: border-box;
         color: white;
+        white-space: nowrap; /* Cegah teks memaksa tombol melebar */
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     button:hover {
         transform: translateY(-6px);
@@ -108,7 +111,6 @@
         from { opacity: 0; transform: scale(0.9); }
         to { opacity: 1; transform: scale(1); }
     }
-
     /* Transisi halaman */
     .page-transition {
         position: fixed;
@@ -128,7 +130,6 @@
     .page-transition.complete {
         transform: translateY(-100%);
     }
-
     /* Responsif mobile */
     @media (max-width: 480px) {
         .content {
@@ -154,13 +155,14 @@
         button {
             padding: 11px 20px;
             font-size: 0.95em;
-            width: 140px; /* Tetap sama ukurannya di mobile */
+            width: 140px; /* Tetap fixed sama di mobile */
+            white-space: normal; /* Biar teks panjang wrap kalau perlu */
+            word-wrap: break-word;
         }
         #btnGeser {
             left: 30px;
         }
     }
-
     @media (max-width: 360px) {
         h1 {
             font-size: 1.9em;
@@ -184,11 +186,9 @@
 </head>
 <body>
 <div class="page-transition" id="transition"></div>
-
 <audio id="lagu" autoplay loop muted>
     <source src="sempurna.mp3" type="audio/mpeg">
 </audio>
-
 <div class="content">
     <img src="kucing.jpg" alt="Kucing Cute">
     <h1>HAIIII SENGGGG</h1>
@@ -198,7 +198,6 @@
         <button id="btnFix">MAUU BANGETTT</button>
     </div>
 </div>
-
 <script>
     // Falling hearts
     setInterval(createLove, 400);
@@ -213,44 +212,36 @@
         document.body.appendChild(love);
         setTimeout(() => love.remove(), 10000);
     }
-
     // Unmute audio
     document.addEventListener("click", () => {
         const audio = document.getElementById("lagu");
         audio.muted = false;
         audio.volume = 0.5;
     }, { once: true });
-
     // Tombol kabur
     const btnGeser = document.getElementById("btnGeser");
     const wrapper = document.querySelector(".btn-wrapper");
-
     function moveButton() {
         const maxX = wrapper.offsetWidth - btnGeser.offsetWidth - 60;
         const maxY = wrapper.offsetHeight - btnGeser.offsetHeight;
-
         const randomX = 30 + Math.random() * maxX;
         const randomY = Math.random() * maxY;
-
         btnGeser.style.left = randomX + "px";
         btnGeser.style.top = randomY + "px";
         btnGeser.style.transform = "none";
     }
-
     btnGeser.addEventListener("mouseenter", moveButton);
     btnGeser.addEventListener("click", (e) => {
         e.preventDefault();
         moveButton();
     });
-
     // Transisi ke menu.html
     const btnFix = document.getElementById("btnFix");
     const transition = document.getElementById("transition");
-
     btnFix.addEventListener("click", (e) => {
         e.preventDefault();
         transition.classList.add("active");
-        
+       
         setTimeout(() => {
             transition.classList.add("complete");
             window.location.href = 'menu.html';
@@ -259,4 +250,3 @@
 </script>
 </body>
 </html>
-
