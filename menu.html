@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu Mei Cantikkkk 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>meii imutttt</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-    body {
+    html, body {
         margin: 0;
-        height: 100vh;
+        padding: 0;
+        height: 100%;
+        width: 100%;
         overflow: hidden;
-        background: url('https://png.pngtree.com/thumb_back/fw800/background/20251103/pngtree-romantic-pink-background-with-falling-hearts-and-soft-clouds-image_20205466.webp') no-repeat center/cover;
+        background: url('bg.jpg') no-repeat center/cover fixed; /* Tema biru: gunakan bg.jpg seperti halaman sebelumnya */
+    }
+    body {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -57,7 +61,7 @@
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
     }
-    /* Falling Hearts */
+    /* Falling Hearts - warna biru tema */
     .love {
         position: absolute;
         font-size: 24px;
@@ -69,6 +73,46 @@
         to {
             transform: translateY(110vh) rotate(360deg);
             opacity: 0;
+        }
+    }
+
+    /* Responsif mobile - sama seperti kode sebelumnya */
+    @media (max-width: 480px) {
+        .menu-container {
+            grid-gap: 20px;
+            max-width: 380px;
+        }
+        .card {
+            padding: 20px;
+        }
+        .card img {
+            width: 80px;
+            height: 80px;
+        }
+        .card h2 {
+            font-size: 1.3em;
+        }
+        .card p {
+            font-size: 0.9em;
+        }
+    }
+    @media (max-width: 360px) {
+        .menu-container {
+            grid-gap: 15px;
+            max-width: 340px;
+        }
+        .card {
+            padding: 15px;
+        }
+        .card img {
+            width: 70px;
+            height: 70px;
+        }
+        .card h2 {
+            font-size: 1.2em;
+        }
+        .card p {
+            font-size: 0.85em;
         }
     }
 </style>
@@ -96,14 +140,13 @@
             <p>Momen spesial kita yang bikin bintang-bintang iri!</p>
         </div>
     </div>
-
     <script>
-        // Falling hearts
+        // Falling hearts - emoji biru tema
         setInterval(createLove, 400);
         function createLove() {
             const love = document.createElement("div");
             love.className = "love";
-            love.innerHTML = ["💖", "❤️", "💕", "💗"][Math.floor(Math.random() * 4)];
+            love.innerHTML = ["💙", "❤️", "🤍", "❄️"][Math.floor(Math.random() * 4)];
             love.style.left = Math.random() * 100 + "vw";
             love.style.fontSize = Math.random() * 20 + 20 + "px";
             love.style.animationDuration = Math.random() * 4 + 4 + "s";
