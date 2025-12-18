@@ -24,7 +24,7 @@
     .menu-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-gap: 30px;
+        grid-gap: 25px;
         max-width: 600px;
         width: 90%;
         margin: 0 auto;
@@ -34,34 +34,35 @@
         backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 25px;
-        padding: 30px;
+        padding: 25px; /* Dikurangi padding */
         text-align: center;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         transition: all 0.3s ease;
         animation: fadeIn 1s ease-out;
-        cursor: pointer; /* Menunjukkan bisa diklik */
+        cursor: pointer;
     }
     .card:hover {
         transform: scale(1.05);
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     }
     .card img {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 15px;
+        width: 90px; /* Dikecilkan */
+        height: 90px;
+        margin-bottom: 12px;
         filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
     }
     .card h2 {
-        font-size: 1.5em;
-        margin-bottom: 10px;
+        font-size: 1.4em; /* Dikurangi */
+        margin-bottom: 8px;
         color: #ffffff;
-        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8); /* Shadow lebih tebal agar terbaca */
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
     }
     .card p {
-        font-size: 1em;
+        font-size: 0.95em; /* Dikurangi */
         opacity: 1;
         color: #ffffff;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        margin: 0;
     }
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px); }
@@ -80,42 +81,46 @@
             opacity: 0;
         }
     }
+    /* Mobile - box lebih pendek & compact */
     @media (max-width: 480px) {
         .menu-container {
-            grid-gap: 20px;
-            max-width: 380px;
+            grid-gap: 18px;
+            max-width: 360px;
         }
         .card {
-            padding: 20px;
+            padding: 18px; /* Lebih kecil */
         }
         .card img {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
+            margin-bottom: 10px;
         }
         .card h2 {
-            font-size: 1.3em;
+            font-size: 1.2em;
+            margin-bottom: 6px;
         }
         .card p {
-            font-size: 0.9em;
+            font-size: 0.85em;
         }
     }
     @media (max-width: 360px) {
         .menu-container {
             grid-gap: 15px;
-            max-width: 340px;
+            max-width: 320px;
         }
         .card {
             padding: 15px;
         }
         .card img {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
+            margin-bottom: 8px;
         }
         .card h2 {
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
         .card p {
-            font-size: 0.85em;
+            font-size: 0.8em;
         }
     }
 </style>
