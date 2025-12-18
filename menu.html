@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu Mei Cantikkkk 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: url('https://png.pngtree.com/thumb_back/fw800/background/20251103/pngtree-romantic-pink-background-with-falling-hearts-and-soft-clouds-image_20205466.webp') no-repeat center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+    }
+    .menu-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 30px;
+        max-width: 600px;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 25px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+        animation: fadeIn 1s ease-out;
+    }
+    .card:hover {
+        transform: scale(1.05);
+    }
+    .card img {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+    }
+    .card h2 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    .card p {
+        font-size: 1em;
+        opacity: 0.9;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    /* Falling Hearts */
+    .love {
+        position: absolute;
+        font-size: 24px;
+        pointer-events: none;
+        animation: fall linear forwards;
+        z-index: 1;
+    }
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="card">
+            <img src="https://i.pinimg.com/originals/3e/9f/0f/3e9f0f0e0b0b0b0b0b0b0b0b0b0b0b0b.png" alt="Heart Icon">
+            <h2>Love Notes 💕</h2>
+            <p>Pesan manis buat kamu yang bikin hati meleleh!</p>
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/originals/2a/5b/3c/2a5b3c2a5b3c2a5b3c2a5b3c.png" alt="Music Icon">
+            <h2>Music Vibes 🎶</h2>
+            <p>Lagu-lagu romantis yang bikin mood naik terus!</p>
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/originals/4d/6e/7f/4d6e7f4d6e7f4d6e7f4d6e7f.png" alt="Gift Icon">
+            <h2>Gift Ideas 🎁</h2>
+            <p>Ide kado lucu yang pasti bikin senyum lebar!</p>
+        </div>
+        <div class="card">
+            <img src="https://i.pinimg.com/originals/5f/7a/8b/5f7a8b5f7a8b5f7a8b5f7a8b.png" alt="Star Icon">
+            <h2>Star Moments ⭐</h2>
+            <p>Momen spesial kita yang bikin bintang-bintang iri!</p>
+        </div>
+    </div>
+
+    <script>
+        // Falling hearts
+        setInterval(createLove, 400);
+        function createLove() {
+            const love = document.createElement("div");
+            love.className = "love";
+            love.innerHTML = ["💖", "❤️", "💕", "💗"][Math.floor(Math.random() * 4)];
+            love.style.left = Math.random() * 100 + "vw";
+            love.style.fontSize = Math.random() * 20 + 20 + "px";
+            love.style.animationDuration = Math.random() * 4 + 4 + "s";
+            love.style.opacity = Math.random() * 0.5 + 0.5;
+            document.body.appendChild(love);
+            setTimeout(() => love.remove(), 10000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mei Cantikkkk 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: url('bg.jpg') no-repeat center/cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+    }
+    .box {
+        position: relative;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 50px 80px;
+        border-radius: 30px;
+        text-align: center;
+        max-width: 550px;
+        width: 90%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 1.5s ease-out;
+    }
+    img {
+        width: 180px;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 255, 255, 0.4);
+        margin-bottom: 20px;
+    }
+    h1 {
+        font-size: 2.5em;
+        margin: 10px 0;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    p {
+        font-size: 1.3em;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+    .btn-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        height: 100px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    button {
+        padding: 14px 36px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        min-width: 160px;
+    }
+    button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    #btnGeser {
+        background: linear-gradient(135deg, hwb(194 72% 10%), hsl(192, 54%, 73%));
+        color: white;;
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+    }
+    #btnFix {
+        background: linear-gradient(135deg, hwb(194 72% 10%), hsl(192, 54%, 73%));
+        color: white;
+        position: relative;
+        margin-left: auto;
+    }
+    .love {
+        position: absolute;
+        font-size: 24px;
+        pointer-events: none;
+        animation: fall linear forwards;
+        z-index: 1;
+    }
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Efek transisi halaman */
+    .page-transition {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ff8fa3;
+        transform: translateY(100%);
+        z-index: 9999;
+        pointer-events: none;
+        transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .page-transition.active {
+        transform: translateY(0);
+    }
+    .page-transition.complete {
+        transform: translateY(-100%);
+    }
+</style>
+</head>
+<body>
+<div class="page-transition" id="transition"></div>
+
+<audio id="lagu" autoplay loop muted>
+    <source src="sempurna.mp3" type="audio/mpeg">
+</audio>
+
+<div class="box">
+    <img src="kucing.jpg" alt="Hello Kitty Love Cute">
+    <h1>HAIIII SENGGGG 💕</h1>
+    
+    <p>Mau liat sesuatu gaaaa????</p>
+    <div class="btn-wrapper">
+        <button id="btnGeser">Gak Mau 😤</button>
+        <button id="btnFix">MAUU BANGETTT 💖</button>
+    </div>
+</div>
+
+<script>
+    // Falling hearts
+    setInterval(createLove, 400);
+    function createLove() {
+        const love = document.createElement("div");
+        love.className = "love";
+        love.innerHTML = ["💖", "❤️", "💕", "💗"][Math.floor(Math.random() * 4)];
+        love.style.left = Math.random() * 100 + "vw";
+        love.style.fontSize = Math.random() * 20 + 20 + "px";
+        love.style.animationDuration = Math.random() * 4 + 4 + "s";
+        love.style.opacity = Math.random() * 0.5 + 0.5;
+        document.body.appendChild(love);
+        setTimeout(() => love.remove(), 10000);
+    }
+
+    // Unmute audio
+    document.addEventListener("click", () => {
+        const audio = document.getElementById("lagu");
+        audio.muted = false;
+        audio.volume = 0.5;
+    }, { once: true });
+
+    // Tombol kabur
+    const btnGeser = document.getElementById("btnGeser");
+    const wrapper = document.querySelector(".btn-wrapper");
+
+    function moveButton() {
+        const maxX = wrapper.offsetWidth - btnGeser.offsetWidth - 40;
+        const maxY = wrapper.offsetHeight - btnGeser.offsetHeight;
+
+        const randomX = 20 + Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        btnGeser.style.left = randomX + "px";
+        btnGeser.style.top = randomY + "px";
+        btnGeser.style.transform = "none";
+    }
+
+    btnGeser.addEventListener("mouseenter", moveButton);
+    btnGeser.addEventListener("click", (e) => {
+        e.preventDefault();
+        moveButton();
+    });
+
+    // Efek transisi saat klik MAUU
+    const btnFix = document.getElementById("btnFix");
+    const transition = document.getElementById("transition");
+
+    btnFix.addEventListener("click", (e) => {
+        e.preventDefault();
+        transition.classList.add("active");
+        
+        setTimeout(() => {
+            transition.classList.add("complete");
+            window.location.href = 'menu.html';
+        }, 600);
+    });
+</script>
+</body>
+</html>
