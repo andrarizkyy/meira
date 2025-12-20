@@ -1,158 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>mei baikkkkkk</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>mei baikkkkkk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: url('bg.jpg') no-repeat center/cover fixed;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
+        body {
+            padding: 60px 20px 120px;
+            position: relative;
+        }
+        /* JUDUL */
+        h1 {
+            text-align: center;
+            font-size: 3.2em;
+            margin-bottom: 120px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 25px rgba(120,180,255,0.8);
+        }
+        /* CONTAINER */
+        .gallery-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 200px;
+        }
+        /* ITEM */
+        .gallery-item {
+            position: relative;
+            max-width: 420px;
+            margin: auto;
+            animation: fadeUp 1s ease forwards;
+            opacity: 0;
+        }
+        /* FOTO */
+        .gallery-item img {
+            width: 100%;
+            border-radius: 26px;
+            display: block;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+        /* CAPTION – GAYA BARU */
+        .caption {
+            position: absolute;
+            left: 50%;
+            bottom: -80px;
+            transform: translateX(-50%);
+            width: 90%;
+            padding: 34px 40px;
+            font-size: 1.6em;
+            line-height: 1.6;
+            text-align: center;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.35),
+                rgba(180,200,255,0.15)
+            );
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            color: #fff;
+            border-radius: 28px;
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.4),
+                inset 0 0 30px rgba(255,255,255,0.15);
+            text-shadow: 0 0 12px rgba(120,180,255,0.9);
+        }
+        /* ANIMASI FADE UP */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+        /* HUJAN EMOJI LOVE (SAMA PERSIS DENGAN KODE PERTAMA) */
+        .love {
+            position: absolute;
+            font-size: 24px;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 1;
+            user-select: none;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
-<style>
-html, body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    background: url('bg.jpg') no-repeat center/cover fixed;
-    font-family: 'Poppins', sans-serif;
-    color: white;
-}
+        /* ================= RESPONSIVE (DISAMAKAN DENGAN KODE PERTAMA) ================= */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.3em;
+                margin-bottom: 80px;
+            }
+            .gallery-container {
+                gap: 160px;
+            }
+            .caption {
+                position: static;
+                transform: none;
+                width: 100%;
+                margin-top: 22px;
+                font-size: 1.4em;
+                padding: 26px 28px;
+            }
+        }
 
-body {
-    padding: 60px 20px 120px;
-}
+        @media (max-width: 480px) {
+            body {
+                padding: 40px 15px 100px;
+            }
+            h1 {
+                font-size: 2.1em;
+                margin-bottom: 60px;
+            }
+            .gallery-container {
+                gap: 140px;
+            }
+            .gallery-item {
+                max-width: 380px;
+            }
+            .caption {
+                font-size: 1.3em;
+                padding: 24px 26px;
+            }
+        }
 
-/* JUDUL */
-h1 {
-    text-align: center;
-    font-size: 3.2em;
-    margin-bottom: 120px;
-    letter-spacing: 3px;
-    text-shadow: 0 0 25px rgba(120,180,255,0.8);
-}
-
-/* CONTAINER */
-.gallery-container {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 200px;
-}
-
-/* ITEM */
-.gallery-item {
-    position: relative;
-    max-width: 420px;
-    margin: auto;
-    animation: fadeUp 1s ease forwards;
-    opacity: 0;
-}
-
-/* FOTO */
-.gallery-item img {
-    width: 100%;
-    border-radius: 26px;
-    display: block;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-}
-
-/* CAPTION – GAYA BARU */
-.caption {
-    position: absolute;
-    left: 50%;
-    bottom: -80px;
-    transform: translateX(-50%);
-    width: 90%;
-
-    padding: 34px 40px;
-    font-size: 1.6em;
-    line-height: 1.6;
-    text-align: center;
-
-    /* BACKGROUND BARU */
-    background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.35),
-        rgba(180,200,255,0.15)
-    );
-    backdrop-filter: blur(22px);
-    color: #fff;
-
-    border-radius: 28px;
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.4),
-        inset 0 0 30px rgba(255,255,255,0.15);
-
-    text-shadow: 0 0 12px rgba(120,180,255,0.9);
-}
-
-/* ANIMASI */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(60px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.3em;
-        margin-bottom: 80px;
-    }
-
-    .gallery-container {
-        gap: 160px;
-    }
-
-    .caption {
-        position: static;
-        transform: none;
-        width: 100%;
-        margin-top: 22px;
-        font-size: 1.4em;
-        padding: 26px 28px;
-    }
-}
-</style>
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.9em;
+            }
+            .gallery-item {
+                max-width: 340px;
+            }
+            .caption {
+                font-size: 1.2em;
+                padding: 20px 22px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
 <h1>GALERI</h1>
 
 <div class="gallery-container">
-
     <div class="gallery-item">
-        <img src="foto1.jpeg">
+        <img src="foto1.jpeg" alt="Foto 1">
         <div class="caption">
             iniii lucuuuu sumpahhhh, kita dari kecil juga udah dikasih tanda heheheheh,
             kayaknya kita emang ditakdirkan bareng ya ♡
         </div>
     </div>
-
     <div class="gallery-item">
-        <img src="foto2.jpeg">
+        <img src="foto2.jpeg" alt="Foto 2">
         <div class="caption">
             Moment kecil bareng kamu yang takkan pernah kulupa,
             dari nongkrong biasa sampai jadi cerita terindah dalam hidupku
         </div>
     </div>
-
     <div class="gallery-item">
-        <img src="foto3.jpeg">
+        <img src="foto3.jpeg" alt="Foto 3">
         <div class="caption">
             Kamu cantik banget, dari dulu sampai nanti selamanya,
             dan aku bersyukur bisa ada di sampingmu setiap hari
         </div>
     </div>
     <div class="gallery-item">
-        <img src="foto4.jpeg">
+        <img src="foto4.jpeg" alt="Foto 4">
         <div class="caption">
             Kamu cantik banget, dari dulu sampai nanti selamanya,
             dan aku bersyukur bisa ada di sampingmu setiap hari
         </div>
     </div>
-
 </div>
+
+<script>
+    // Hujan emoji persis seperti kode pertama (💙 ❤️ 🤍 ❄️)
+    setInterval(createLove, 400);
+    function createLove() {
+        const love = document.createElement("div");
+        love.className = "love";
+        const emojis = ["💙", "❤️", "🤍", "❄️"];
+        love.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+        love.style.left = Math.random() * 100 + "vw";
+        love.style.fontSize = Math.random() * 20 + 20 + "px";
+        love.style.animationDuration = Math.random() * 4 + 4 + "s";
+        love.style.opacity = Math.random() * 0.5 + 0.5;
+        document.body.appendChild(love);
+        setTimeout(() => love.remove(), 10000);
+    }
+</script>
 
 </body>
 </html>
