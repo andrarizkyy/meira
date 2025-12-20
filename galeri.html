@@ -11,185 +11,105 @@
 html, body {
     margin: 0;
     padding: 0;
-    width: 100%;
     min-height: 100vh;
     background: url('bg.jpg') no-repeat center/cover fixed;
     font-family: 'Poppins', sans-serif;
     color: white;
-    overflow-x: hidden;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 60px 20px 120px;
 }
 
 /* JUDUL */
 h1 {
-    font-size: 3.4em;
-    font-weight: 800;
-    margin-bottom: 90px;
+    text-align: center;
+    font-size: 3.2em;
+    margin-bottom: 120px;
     letter-spacing: 3px;
-    text-shadow:
-        0 2px 4px rgba(0,0,0,0.9),
-        0 0 30px rgba(120,180,255,0.8);
+    text-shadow: 0 0 25px rgba(120,180,255,0.8);
 }
 
 /* CONTAINER */
 .gallery-container {
-    width: 100%;
-    max-width: 2000px;
+    max-width: 1200px;
+    margin: auto;
     display: flex;
     flex-direction: column;
-    gap: 240px;
+    gap: 200px;
 }
 
 /* ITEM */
 .gallery-item {
     position: relative;
-    width: 420px;
-    max-width: 90vw;
-    display: flex;
-    justify-content: center;
+    max-width: 420px;
+    margin: auto;
     animation: fadeUp 1s ease forwards;
     opacity: 0;
-    cursor: pointer;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.6));
-    transition: 0.6s ease;
 }
 
-.gallery-item:hover {
-    transform: translateY(-20px) scale(1.05);
-    filter: drop-shadow(0 40px 80px rgba(0,0,0,0.8));
-}
-
+/* FOTO */
 .gallery-item img {
     width: 100%;
     border-radius: 26px;
+    display: block;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
 }
 
-/* CAPTION DESKTOP */
+/* CAPTION – GAYA BARU */
 .caption {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 40px 100px;
-    max-width: 1800px;
-    background: rgba(0,0,0,0.45);
-    backdrop-filter: blur(18px);
-    border-radius: 80px;
-    font-size: 2.1em;
-    font-weight: 600;
-    line-height: 1.7;
-    color: #fff;
+    left: 50%;
+    bottom: -80px;
+    transform: translateX(-50%);
+    width: 90%;
+
+    padding: 34px 40px;
+    font-size: 1.6em;
+    line-height: 1.6;
     text-align: center;
-    white-space: normal;
-    text-shadow: 0 0 18px rgba(120,180,255,1);
-    pointer-events: none;
-    box-sizing: border-box;
-}
 
-/* POSISI KIRI KANAN */
-.gallery-item:nth-child(odd) {
-    align-self: flex-start;
-}
-.gallery-item:nth-child(odd) .caption {
-    left: 130%;
-}
+    /* BACKGROUND BARU */
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.35),
+        rgba(180,200,255,0.15)
+    );
+    backdrop-filter: blur(22px);
+    color: #fff;
 
-.gallery-item:nth-child(even) {
-    align-self: flex-end;
-}
-.gallery-item:nth-child(even) .caption {
-    right: 130%;
+    border-radius: 28px;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.4),
+        inset 0 0 30px rgba(255,255,255,0.15);
+
+    text-shadow: 0 0 12px rgba(120,180,255,0.9);
 }
 
 /* ANIMASI */
 @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(60px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* LIGHTBOX */
-.lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    backdrop-filter: blur(12px);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-.lightbox.active {
-    display: flex;
-}
-
-.lightbox img {
-    max-width: 94%;
-    max-height: 94%;
-    border-radius: 24px;
-    box-shadow: 0 0 50px rgba(120,180,255,0.7);
-    animation: zoomIn 0.5s ease;
-}
-
-.close {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    font-size: 50px;
-    cursor: pointer;
-}
-
-/* FALLING EMOJI */
-.love {
-    position: fixed;
-    top: -50px;
-    font-size: 30px;
-    animation: fall linear forwards;
-    pointer-events: none;
-}
-
-@keyframes fall {
-    to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-}
-
 /* ================= MOBILE ================= */
-@media (max-width: 868px) {
+@media (max-width: 768px) {
     h1 {
-        font-size: 2.4em;
-        margin-bottom: 70px;
+        font-size: 2.3em;
+        margin-bottom: 80px;
     }
 
     .gallery-container {
         gap: 160px;
     }
 
-    .gallery-item {
-        width: 90vw;
-        max-width: 380px;
-        align-self: center !important;
-    }
-
-    /* PINDAH KE BAWAH FOTO */
     .caption {
         position: static;
         transform: none;
-        margin-top: 24px;
-        padding: 26px 36px;
-        max-width: 100%;
-        font-size: 1.5em;
-        line-height: 1.6;
-        border-radius: 40px;
-    }
-}
-
-@media (max-width: 480px) {
-    .caption {
+        width: 100%;
+        margin-top: 22px;
         font-size: 1.4em;
-        padding: 22px 28px;
+        padding: 26px 28px;
     }
 }
 </style>
@@ -201,7 +121,7 @@ h1 {
 
 <div class="gallery-container">
 
-    <div class="gallery-item" onclick="openLightbox('foto2.png')">
+    <div class="gallery-item">
         <img src="foto2.png">
         <div class="caption">
             iniii lucuuuu sumpahhhh, kita dari kecil juga udah dikasih tanda heheheheh,
@@ -209,7 +129,7 @@ h1 {
         </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('foto1.png')">
+    <div class="gallery-item">
         <img src="foto1.png">
         <div class="caption">
             Moment kecil bareng kamu yang takkan pernah kulupa,
@@ -217,7 +137,7 @@ h1 {
         </div>
     </div>
 
-    <div class="gallery-item" onclick="openLightbox('foto3.png')">
+    <div class="gallery-item">
         <img src="foto3.png">
         <div class="caption">
             Kamu cantik banget, dari dulu sampai nanti selamanya,
@@ -226,33 +146,6 @@ h1 {
     </div>
 
 </div>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <span class="close" onclick="event.stopPropagation(); closeLightbox();">&times;</span>
-    <img id="lightbox-img">
-</div>
-
-<script>
-function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').classList.add('active');
-}
-function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('active');
-}
-
-setInterval(() => {
-    const love = document.createElement("div");
-    love.className = "love";
-    const emojis = ["💙","🤍","✨","💜","🌸","🌟","♡"];
-    love.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-    love.style.left = Math.random() * 100 + "vw";
-    love.style.animationDuration = Math.random() * 6 + 8 + "s";
-    document.body.appendChild(love);
-    setTimeout(() => love.remove(), 14000);
-}, 500);
-</script>
 
 </body>
 </html>
