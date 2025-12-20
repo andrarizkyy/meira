@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery - mei cantikkkk</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,61 +11,113 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
     width: 100%;
-    overflow: hidden;
+    min-height: 100vh;
     background: url('bg.jpg') no-repeat center/cover fixed;
     font-family: 'Poppins', sans-serif;
     color: white;
+    overflow-x: hidden;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
-    padding-top: 40px;
+    padding: 60px 20px 120px;
+    position: relative;
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 3.4em;
     font-weight: 800;
-    margin: 0 0 60px 0;
+    margin-bottom: 90px;
     color: #ffffff;
     text-shadow: 
-        0 1px 2px rgba(0,0,0,0.9),
-        0 2px 4px rgba(0,0,0,0.8),
-        0 0 15px rgba(100, 150, 255, 0.6);
-    letter-spacing: 2px;
+        0 1px 3px rgba(0,0,0,0.9),
+        0 3px 10px rgba(0,0,0,0.7),
+        0 0 25px rgba(120, 180, 255, 0.7);
+    letter-spacing: 3px;
 }
 
+/* Container scroll */
 .gallery-container {
-    position: relative;
     width: 100%;
-    height: 80vh;
-    max-width: 1000px;
+    max-width: 2000px; /* Lebih lebar biar caption besar muat */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 240px;
 }
 
+/* Item foto + caption samping */
 .gallery-item {
-    position: absolute;
-    width: 360px; /* Diperbesar dari 280px */
-    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    position: relative;
+    width: 420px;
+    max-width: 90vw;
+    border-radius: 26px;
+    overflow: visible;
+    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.5));
     cursor: pointer;
-    transition: 0.4s ease;
-    border-radius: 20px;
-    overflow: hidden;
+    transition: all 0.6s ease;
+    animation: fadeUp 1s ease forwards;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gallery-item:hover {
-    transform: scale(1.1) !important;
-    z-index: 10;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+    transform: translateY(-25px) scale(1.06);
+    filter: drop-shadow(0 35px 70px rgba(0,0,0,0.7)) brightness(1.12);
 }
 
 .gallery-item img {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 26px;
+}
+
+/* CAPTION: UKURAN (LEBAR) 2,5 KALI LEBIH BESAR */
+.caption {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 32px 80px; /* Padding lebih besar biar lega */
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(18px);
+    border-radius: 70px; /* Lebih bulat biar manis */
+    font-size: 1.8em; /* Font sedikit lebih besar */
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 16px rgba(120, 180, 255, 1);
+    white-space: normal; /* Boleh multi-line */
+    line-height: 1.5;
+    text-align: center;
+    max-width: 1500px; /* <--- INI DIA: 2,5 KALI LEBIH LEBAR (dari 600px jadi 1500px) */
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+/* Jarak dari foto tetap pas seperti versi mantap */
+.gallery-item:nth-child(odd) {
+    align-self: flex-start;
+}
+
+.gallery-item:nth-child(odd) .caption {
+    left: 130%;
+}
+
+.gallery-item:nth-child(even) {
+    align-self: flex-end;
+}
+
+.gallery-item:nth-child(even) .caption {
+    right: 130%;
+}
+
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* LIGHTBOX */
@@ -73,15 +125,14 @@ h1 {
     display: none;
     position: fixed;
     z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.9);
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.95);
     justify-content: center;
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
+    backdrop-filter: blur(12px);
 }
 
 .lightbox.active {
@@ -89,11 +140,11 @@ h1 {
 }
 
 .lightbox img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 15px;
-    box-shadow: 0 0 30px rgba(0,0,0,0.8);
-    animation: zoomIn 0.4s ease;
+    max-width: 94%;
+    max-height: 94%;
+    border-radius: 24px;
+    box-shadow: 0 0 50px rgba(120, 180, 255, 0.7);
+    animation: zoomIn 0.5s ease;
 }
 
 .close {
@@ -104,51 +155,70 @@ h1 {
     font-size: 50px;
     font-weight: bold;
     cursor: pointer;
-    text-shadow: 0 0 10px black;
+    text-shadow: 0 0 15px black;
+    transition: transform 0.3s;
+}
+
+.close:hover {
+    transform: scale(1.2);
 }
 
 @keyframes zoomIn {
-    from { transform: scale(0.7); opacity: 0; }
+    from { transform: scale(0.6); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
-/* LOVE EFFECT */
+/* FALLING EMOJI */
 .love {
-    position: absolute;
+    position: fixed;
+    top: -50px;
     pointer-events: none;
+    font-size: 30px;
+    opacity: 0.9;
     animation: fall linear forwards;
-    z-index: 1;
+    z-index: 10;
 }
 
 @keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+    100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+}
+
+/* RESPONSIVE - HP */
+@media (max-width: 868px) {
+    .gallery-container {
+        gap: 160px;
+    }
+
+    .gallery-item {
+        width: 88vw;
+        max-width: 380px;
+    }
+
+    .gallery-item:nth-child(odd),
+    .gallery-item:nth-child(even) {
+        align-self: center;
+    }
+
+    .caption {
+        top: auto;
+        bottom: -100px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        font-size: 1.6em;
+        padding: 28px 50px;
+        max-width: 90%;
     }
 }
 
-/* MOBILE */
 @media (max-width: 480px) {
-    h1 {
-        font-size: 2.4em;
-        margin-bottom: 40px;
-    }
-    .gallery-item {
-        width: 280px; /* Besar di HP tapi tetap muat */
-    }
-    .close {
-        top: 20px;
-        right: 20px;
-        font-size: 40px;
-    }
-}
-
-@media (max-width: 360px) {
-    h1 {
-        font-size: 2.1em;
-    }
-    .gallery-item {
-        width: 240px;
+    h1 { font-size: 2.4em; margin-bottom: 70px; }
+    .gallery-item { max-width: 340px; }
+    .caption { 
+        font-size: 1.5em; 
+        padding: 24px 40px; 
+        bottom: -90px;
     }
 }
 </style>
@@ -159,55 +229,69 @@ h1 {
 <h1>GALERI</h1>
 
 <div class="gallery-container">
-    <!-- Posisi acak dengan jarak horizontal lebih lebar -->
-    <div class="gallery-item" style="top: 5%; left: 8%; transform: rotate(-10deg);" onclick="openLightbox('foto1.png')">
-        <img src="foto1.png" alt="Foto 1">
+    <div class="gallery-item" onclick="openLightbox('foto2.png')">
+        <img src="foto2.png" alt="Foto 1">
+        <div class="caption">iniii lucuuuu sumpahhhh, kita dari kecil juga udah dikasih tanda heheheheh, kayaknya kita emang ditakdirkan bareng ya ♡</div>
     </div>
-    <div class="gallery-item" style="top: 25%; left: 55%; transform: rotate(15deg);" onclick="openLightbox('foto2.png')">
-        <img src="foto2.png" alt="Foto 2">
+
+    <div class="gallery-item" onclick="openLightbox('foto1.png')">
+        <img src="foto1.png" alt="Foto 2">
+        <div class="caption">Moment kecil bareng kamu yang takkan pernah kulupa, dari nongkrong biasa sampai jadi cerita terindah dalam hidupku</div>
     </div>
-    <div class="gallery-item" style="top: 50%; left: 20%; transform: rotate(-6deg);" onclick="openLightbox('foto3.png')">
+
+    <div class="gallery-item" onclick="openLightbox('foto3.png')">
         <img src="foto3.png" alt="Foto 3">
+        <div class="caption">Kamu cantik banget, dari dulu sampai nanti selamanya, dan aku bersyukur banget bisa ada di sampingmu setiap hari</div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('foto4.png')">
+        <img src="foto4.png" alt="Foto 4">
+        <div class="caption">Setiap kali lihat foto ini, aku tersenyum sendiri karena inget semua kebodohanku yang kamu terima dengan sabar</div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('foto5.png')">
+        <img src="foto5.png" alt="Foto 5">
+        <div class="caption">Kamu adalah alasan aku percaya cinta itu nyata, bukan cuma di film atau lagu, tapi benar-benar ada di sini bersamamu</div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('foto6.png')">
+        <img src="foto6.png" alt="Foto 6">
+        <div class="caption">Bersama kamu, setiap hari terasa seperti mimpi indah yang ga mau aku bangun darinya, forever with you sayangku</div>
     </div>
 </div>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="close" onclick="event.stopPropagation(); closeLightbox();">&times;</span>
     <img id="lightbox-img" src="" alt="Enlarged photo">
 </div>
 
 <script>
 // Lightbox
 function openLightbox(src) {
-    const lightbox = document.getElementById('lightbox');
-    const img = document.getElementById('lightbox-img');
-    img.src = src;
-    lightbox.classList.add('active');
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('active');
 }
 
 function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    lightbox.classList.remove('active');
+    document.getElementById('lightbox').classList.remove('active');
 }
 
 document.getElementById('lightbox').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeLightbox();
-    }
+    if (e.target === this) closeLightbox();
 });
 
 // Falling love effect
 setInterval(() => {
     const love = document.createElement("div");
     love.className = "love";
-    love.innerHTML = ["💙","🤍","✨","❄️"][Math.floor(Math.random()*4)];
-    love.style.left = Math.random()*100 + "vw";
-    love.style.fontSize = Math.random()*20 + 20 + "px";
-    love.style.animationDuration = Math.random()*4 + 4 + "s";
+    const emojis = ["💙","🤍","✨","❄️","💜","🩵","🌸","🌟","🫧","♡","🌹","💕"];
+    love.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+    love.style.left = Math.random() * 100 + "vw";
+    love.style.animationDuration = Math.random() * 6 + 8 + "s";
     document.body.appendChild(love);
-    setTimeout(()=>love.remove(),10000);
-}, 400);
+    setTimeout(() => love.remove(), 15000);
+}, 500);
 </script>
 
 </body>
