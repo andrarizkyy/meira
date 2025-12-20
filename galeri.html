@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mei baikkkkkk</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -10,17 +10,16 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
             background: url('bg.jpg') no-repeat center/cover fixed;
             font-family: 'Poppins', sans-serif;
             color: white;
+            overflow-x: hidden; /* Cuma blokir horizontal */
         }
         body {
             padding: 60px 20px 120px;
             position: relative;
         }
+
         /* JUDUL */
         h1 {
             text-align: center;
@@ -29,6 +28,7 @@
             letter-spacing: 3px;
             text-shadow: 0 0 25px rgba(120,180,255,0.8);
         }
+
         /* CONTAINER */
         .gallery-container {
             max-width: 1200px;
@@ -37,6 +37,7 @@
             flex-direction: column;
             gap: 200px;
         }
+
         /* ITEM */
         .gallery-item {
             position: relative;
@@ -45,6 +46,7 @@
             animation: fadeUp 1s ease forwards;
             opacity: 0;
         }
+
         /* FOTO */
         .gallery-item img {
             width: 100%;
@@ -52,7 +54,8 @@
             display: block;
             box-shadow: 0 30px 60px rgba(0,0,0,0.6);
         }
-        /* CAPTION – GAYA BARU */
+
+        /* CAPTION */
         .caption {
             position: absolute;
             left: 50%;
@@ -77,15 +80,17 @@
                 inset 0 0 30px rgba(255,255,255,0.15);
             text-shadow: 0 0 12px rgba(120,180,255,0.9);
         }
+
         /* ANIMASI FADE UP */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(60px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* HUJAN EMOJI LOVE (SAMA PERSIS DENGAN KODE PERTAMA) */
+        /* HUJAN EMOJI LOVE */
         .love {
-            position: absolute;
+            position: fixed; /* Diubah jadi fixed supaya tetap jatuh meski di-scroll */
+            top: -50px;
             font-size: 24px;
             pointer-events: none;
             animation: fall linear forwards;
@@ -99,8 +104,11 @@
             }
         }
 
-        /* ================= RESPONSIVE (DISAMAKAN DENGAN KODE PERTAMA) ================= */
+        /* ================= RESPONSIVE (DIKECILIN LEBIH BANYAK DI HP) ================= */
         @media (max-width: 768px) {
+            body {
+                padding: 50px 15px 100px;
+            }
             h1 {
                 font-size: 2.3em;
                 margin-bottom: 80px;
@@ -108,46 +116,56 @@
             .gallery-container {
                 gap: 160px;
             }
+            .gallery-item {
+                max-width: 380px;
+            }
             .caption {
                 position: static;
                 transform: none;
                 width: 100%;
                 margin-top: 22px;
-                font-size: 1.4em;
-                padding: 26px 28px;
+                font-size: 1.35em;
+                padding: 24px 26px;
             }
         }
 
         @media (max-width: 480px) {
             body {
-                padding: 40px 15px 100px;
+                padding: 40px 12px 80px;
             }
             h1 {
-                font-size: 2.1em;
+                font-size: 2em;
                 margin-bottom: 60px;
             }
             .gallery-container {
-                gap: 140px;
-            }
-            .gallery-item {
-                max-width: 380px;
-            }
-            .caption {
-                font-size: 1.3em;
-                padding: 24px 26px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            h1 {
-                font-size: 1.9em;
+                gap: 130px;
             }
             .gallery-item {
                 max-width: 340px;
             }
             .caption {
-                font-size: 1.2em;
+                font-size: 1.25em;
                 padding: 20px 22px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            body {
+                padding: 30px 10px 70px;
+            }
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 50px;
+            }
+            .gallery-container {
+                gap: 110px;
+            }
+            .gallery-item {
+                max-width: 300px;
+            }
+            .caption {
+                font-size: 1.15em;
+                padding: 18px 20px;
             }
         }
     </style>
@@ -188,7 +206,7 @@
 </div>
 
 <script>
-    // Hujan emoji persis seperti kode pertama (💙 ❤️ 🤍 ❄️)
+    // Hujan emoji love (tetap jalan walau di-scroll)
     setInterval(createLove, 400);
     function createLove() {
         const love = document.createElement("div");
